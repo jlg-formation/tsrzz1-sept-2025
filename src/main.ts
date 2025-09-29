@@ -1,24 +1,19 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+import "./style.css";
+import { cx0, cy0, gSamples, r0, samples, svgns } from "./constant.ts";
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+// Retrouver <g class="samples"></g> et y ajouter <samples> elements circle avec cx, cy, r
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+for (let i = 0; i < samples; i++) {
+  console.log("i = ", i);
+  const circle = document.createElementNS(svgns, "circle");
+
+  const angle = (i * (Math.PI * 2)) / samples + Math.PI / 2;
+  const cx = cx0 + r0 * Math.cos(angle);
+  const cy = cy0 + r0 * Math.sin(angle);
+
+  circle.setAttribute("cx", cx);
+  circle.setAttribute("cy", cy);
+  circle.setAttribute("r", 1);
+
+  gSamples.appendChild(circle);
+}
