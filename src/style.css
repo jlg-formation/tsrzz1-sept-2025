@@ -15,4 +15,11 @@ svg {
       stroke: none;
     }
   }
+
+  g.lines {
+    line {
+      stroke: black;
+      stroke-width: 0.02em;
+    }
+  }
 }

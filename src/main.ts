@@ -17,3 +17,5 @@ for (let i = 0; i < samples; i++) {
 
   gSamples.appendChild(circle);
 }
+
+for (let i = 0; i < samples; i++) {}
