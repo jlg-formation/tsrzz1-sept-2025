@@ -1,9 +1,6 @@
 import { getAttribute } from "./utils/getAttribute";
 import { querySelector } from "./utils/querySelector";
 
-export const samples = 100;
-export const multiplicationFactor = 2;
-
 const elt = querySelector("svg>circle");
 export const cx0 = +getAttribute(elt, "cx");
 export const cy0 = +getAttribute(elt, "cy");

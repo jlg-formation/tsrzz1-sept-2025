@@ -1,43 +1,20 @@
-import {
-  gLines,
-  gSamples,
-  multiplicationFactor,
-  samples,
-  svgns,
-} from "./constant.ts";
+import { Board } from "./classes/Board.ts";
+import { Command } from "./classes/Command.ts";
 import "./style.css";
-import { getAngle, getPointFromAngle } from "./utils/math.ts";
+import type { Config } from "./types/Config.ts";
 
-// Retrouver <g class="samples"></g> et y ajouter <samples> elements circle avec cx, cy, r
+const config: Config = {
+  samples: 10,
+  multiplicationFactor: 2,
+};
 
-for (let i = 0; i < samples; i++) {
-  console.log("i = ", i);
-  const circle = document.createElementNS(svgns, "circle");
+const board = new Board();
+board.setConfig(config);
+board.draw();
 
-  const angle = getAngle(i, samples);
-  const p = getPointFromAngle(angle);
-
-  circle.setAttribute("cx", p.x + "");
-  circle.setAttribute("cy", p.y + "");
-  circle.setAttribute("r", "1");
-
-  gSamples.appendChild(circle);
-}
-
-for (let i = 0; i < samples; i++) {
-  // cree une ligne et ajoute dans gLines
-  const line = document.createElementNS(svgns, "line");
-
-  const angle1 = getAngle(i, samples);
-  const p1 = getPointFromAngle(angle1);
-
-  const angle2 = getAngle(i * multiplicationFactor, samples);
-  const p2 = getPointFromAngle(angle2);
-
-  line.setAttribute("x1", p1.x + "");
-  line.setAttribute("y1", p1.y + "");
-  line.setAttribute("x2", p2.x + "");
-  line.setAttribute("y2", p2.y + "");
-
-  gLines.appendChild(line);
-}
+const command = new Command();
+command.setConfig(config);
+command.onChange((newConfig) => {
+  board.setConfig(newConfig);
+  board.redraw();
+});
