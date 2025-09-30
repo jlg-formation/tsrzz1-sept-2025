@@ -14,6 +14,7 @@ export class Command {
 
   constructor() {
     this.render();
+    this.setActions();
   }
 
   /**
@@ -29,6 +30,21 @@ export class Command {
         HTMLInputElement
       );
       sliderElt.value = this.config[key] + "";
+    }
+  }
+
+  setActions() {
+    for (const key of keys(this.config)) {
+      const sliderElt = querySelector(
+        `.command .${key} input`,
+        HTMLInputElement
+      );
+
+      sliderElt.addEventListener("input", () => {
+        this.config[key] = sliderElt.valueAsNumber;
+        this.render();
+        this.callback(this.config);
+      });
     }
   }
 
