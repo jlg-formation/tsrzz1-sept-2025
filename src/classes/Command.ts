@@ -1,4 +1,5 @@
 import type { Config } from "../types/Config";
+import { keys } from "../utils/keys";
 import { querySelector } from "../utils/querySelector";
 
 type Callback = (newConfig: Config) => void;
@@ -19,21 +20,16 @@ export class Command {
    * Affiche le visuel qui correspond à l'état du composant
    */
   render() {
-    const elt = querySelector(".command .samples .value");
-    elt.innerHTML = this.config.samples + "";
-    const elt2 = querySelector(".command .multiplicationFactor .value");
-    elt2.innerHTML = this.config.multiplicationFactor + "";
+    for (const key of keys(this.config)) {
+      const elt = querySelector(`.command .${key} .value`);
+      elt.innerHTML = this.config[key] + "";
 
-    const sliderElt = querySelector(
-      ".command .samples input",
-      HTMLInputElement
-    );
-    sliderElt.value = this.config.samples + "";
-    const sliderElt2 = querySelector(
-      ".command .multiplicationFactor input",
-      HTMLInputElement
-    );
-    sliderElt2.value = this.config.multiplicationFactor + "";
+      const sliderElt = querySelector(
+        `.command .${key} input`,
+        HTMLInputElement
+      );
+      sliderElt.value = this.config[key] + "";
+    }
   }
 
   setConfig(config: Config) {
