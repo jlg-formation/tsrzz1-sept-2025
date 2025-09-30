@@ -14,7 +14,7 @@ export class ExtendedCommand extends Command {
           "Content-Type": "application/json",
           Authorization: "Bearer xxxxxxxxxx",
         },
-        body: JSON.stringify(this.config),
+        // body: JSON.stringify(this.config),
       });
       const json = await response.json();
       console.log("json: ", json);
