@@ -5,12 +5,12 @@ import { querySelector } from "../utils/querySelector";
 type Callback = (newConfig: Config) => void;
 
 export class Command {
-  private config: Config = {
+  protected config: Config = {
     samples: 0,
     multiplicationFactor: 0,
   };
 
-  private callback: Callback = () => {};
+  protected callback: Callback = () => {};
 
   constructor() {
     this.render();
