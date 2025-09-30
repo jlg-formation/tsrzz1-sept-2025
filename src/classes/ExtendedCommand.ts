@@ -10,6 +10,11 @@ export class ExtendedCommand extends Command {
       console.log("click");
       const response = await fetch("/config-special.json", {
         method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer xxxxxxxxxx",
+        },
+        body: JSON.stringify(this.config),
       });
       const json = await response.json();
       console.log("json: ", json);
