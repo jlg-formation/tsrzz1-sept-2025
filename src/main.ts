@@ -11,9 +11,9 @@ for (let i = 0; i < samples; i++) {
   const cx = cx0 + r0 * Math.cos(angle);
   const cy = cy0 + r0 * Math.sin(angle);
 
-  circle.setAttribute("cx", cx);
-  circle.setAttribute("cy", cy);
-  circle.setAttribute("r", 1);
+  circle.setAttribute("cx", cx + "");
+  circle.setAttribute("cy", cy + "");
+  circle.setAttribute("r", "1");
 
   gSamples.appendChild(circle);
 }
