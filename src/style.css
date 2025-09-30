@@ -40,6 +40,10 @@ div.command {
   label {
     display: flex;
     flex-flow: column;
+
+    input.value {
+      width: 5em;
+    }
   }
 
   div.buttons {

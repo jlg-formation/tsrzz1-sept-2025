@@ -22,11 +22,11 @@ export class Command {
    */
   render() {
     for (const key of keys(this.config)) {
-      const elt = querySelector(`.command .${key} .value`);
-      elt.innerHTML = this.config[key] + "";
+      const elt = querySelector(`.command .${key} .value`, HTMLInputElement);
+      elt.value = this.config[key] + "";
 
       const sliderElt = querySelector(
-        `.command .${key} input`,
+        `.command .${key} input.slider`,
         HTMLInputElement
       );
       sliderElt.value = this.config[key] + "";
@@ -36,12 +36,23 @@ export class Command {
   setActions() {
     for (const key of keys(this.config)) {
       const sliderElt = querySelector(
-        `.command .${key} input`,
+        `.command .${key} input.slider`,
         HTMLInputElement
       );
 
       sliderElt.addEventListener("input", () => {
         this.config[key] = sliderElt.valueAsNumber;
+        this.render();
+        this.callback(this.config);
+      });
+
+      const inputElt = querySelector(
+        `.command .${key} input.value`,
+        HTMLInputElement
+      );
+
+      inputElt.addEventListener("input", () => {
+        this.config[key] = inputElt.valueAsNumber;
         this.render();
         this.callback(this.config);
       });
