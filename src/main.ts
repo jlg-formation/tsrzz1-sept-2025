@@ -1,5 +1,5 @@
 import { Board } from "./classes/Board.ts";
-import { Command } from "./classes/Command.ts";
+import { ExtendedCommand } from "./classes/ExtendedCommand.ts";
 import "./style.css";
 import type { Config } from "./types/Config.ts";
 
@@ -12,7 +12,7 @@ const board = new Board();
 board.setConfig(config);
 board.draw();
 
-const command = new Command();
+const command = new ExtendedCommand();
 command.setConfig(config);
 command.onChange((newConfig) => {
   board.setConfig(newConfig);
